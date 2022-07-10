@@ -1,8 +1,9 @@
 import React from "react";
-import Component from "./index";
+import EditButton from "./index";
+import pencil from "../../assets/svg/pencil.svg";
 
 export default {
-  component: Component,
+  component: EditButton,
   title: "Atoms/EditButton",
   parameters: {
     backgrounds: {
@@ -11,6 +12,13 @@ export default {
   },
 };
 
-const Template = (args) => <Component {...args} />;
+const onClick = () => {
+  console.log("clicked!!!");
+};
+const Template = (args) => <EditButton {...args} />;
 
-export const EditButton = Template.bind({});
+export const Default = Template.bind({});
+Default.args = {
+  onClick: onClick,
+  url: pencil,
+};

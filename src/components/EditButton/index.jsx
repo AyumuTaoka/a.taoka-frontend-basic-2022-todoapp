@@ -3,17 +3,19 @@ import styled from "styled-components";
 import COLOR from "../../variables/color";
 import pencil from "../../assets/svg/pencil.svg";
 
-const Example = () => {
+const EditButton = (props) => {
   return (
-    <StyledBtn onclick>
+    <StyledBtn onClick={props.onClick}>
       <HoverCircle></HoverCircle>
-      <Pencil src={pencil} />
+      <Pencil src={props.pencil} />
     </StyledBtn>
   );
 };
 
 const StyledBtn = styled.button`
   position: relative;
+  width: 20px;
+  height: 20px;
 `;
 
 const HoverCircle = styled.div`
@@ -32,4 +34,4 @@ const Pencil = styled.img`
   transform: translate(-50%, -50%);
 `;
 
-export default Example;
+export default EditButton;
