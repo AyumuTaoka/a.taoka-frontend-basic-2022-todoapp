@@ -7,6 +7,10 @@ const EditButton = (props) => {
     <StyledBtn onClick={props.onClick}>
       <Img src={props.url} />
       <HoverCircle></HoverCircle>
+      {/* ↑HoverCircle, Imgの順番だと
+      Imgにホバーした時、HoverCircleの背景色の設定ができず、
+      背景色が元に戻ってしまうため
+       Img, HoverCircleの順にしています*/}
     </StyledBtn>
   );
 };
