@@ -1,13 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import COLOR from "../../variables/color";
-import pencil from "../../assets/svg/pencil.svg";
 
 const EditButton = (props) => {
   return (
     <StyledBtn onClick={props.onClick}>
+      <Img src={props.url} />
       <HoverCircle></HoverCircle>
-      <Pencil src={props.pencil} />
     </StyledBtn>
   );
 };
@@ -16,22 +15,40 @@ const StyledBtn = styled.button`
   position: relative;
   width: 20px;
   height: 20px;
-`;
-
-const HoverCircle = styled.div`
-  width: 20px;
-  height: 20px;
-  background-color: ${COLOR.BLACK};
   border-radius: 50%;
+  border: none;
+  background-color: transparent;
 `;
 
-const Pencil = styled.img`
+const Img = styled.img`
+  position: absolute;
   width: 15px;
   height: 15px;
-  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  :hover {
+    + div {
+      background-color: ${COLOR.WHITE};
+      opacity: 0.2;
+    }
+  }
+`;
+
+const HoverCircle = styled.div`
+  position: absolute;
+
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  :hover {
+    background-color: ${COLOR.WHITE};
+    opacity: 0.2;
+  }
 `;
 
 export default EditButton;
