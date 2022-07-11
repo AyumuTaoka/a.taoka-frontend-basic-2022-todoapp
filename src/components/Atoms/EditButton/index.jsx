@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import COLOR from "../../variables/color";
+import COLOR from "../../../variables/color";
+import pencil from "../../../assets/svg/pencil.svg";
 
 const EditButton = (props) => {
   return (
     <StyledBtn onClick={props.onClick}>
-      <Img src={props.url} />
+      <Img src={pencil} />
       <HoverCircle></HoverCircle>
       {/* ↑HoverCircle, Imgの順番だと
       Imgにホバーした時、HoverCircleの背景色の設定ができず、
@@ -22,6 +23,16 @@ const StyledBtn = styled.button`
   border-radius: 50%;
   border: none;
   background-color: transparent;
+  & > ${Img}:hover {
+    + ${HoverCircle} {
+      background-color: ${COLOR.WHITE};
+      opacity: 0.2;
+    }
+  }
+  & > ${HoverCircle}:hover {
+    background-color: ${COLOR.WHITE};
+    opacity: 0.2;
+  }
 `;
 
 const Img = styled.img`
@@ -31,17 +42,10 @@ const Img = styled.img`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  :hover {
-    + div {
-      background-color: ${COLOR.WHITE};
-      opacity: 0.2;
-    }
-  }
 `;
 
 const HoverCircle = styled.div`
   position: absolute;
-
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -49,10 +53,6 @@ const HoverCircle = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: transparent;
-  :hover {
-    background-color: ${COLOR.WHITE};
-    opacity: 0.2;
-  }
 `;
 
 export default EditButton;
