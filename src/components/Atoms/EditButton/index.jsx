@@ -40,7 +40,7 @@ const HoverCircle = styled.div`
   transform: translate(-50%, -50%);
   background-color: transparent;
   ${StyledBtn}:hover > & {
-    background-color: ${COLOR.WHITE};
+    background-color: ${COLOR.LIGHT_GRAY};
     opacity: 0.2;
   }
 `;
