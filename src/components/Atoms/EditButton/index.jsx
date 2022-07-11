@@ -6,12 +6,8 @@ import pencil from "../../../assets/svg/pencil.svg";
 const EditButton = (props) => {
   return (
     <StyledBtn onClick={props.onClick}>
-      <Img src={pencil} />
       <HoverCircle></HoverCircle>
-      {/* ↑HoverCircle, Imgの順番だと
-      Imgにホバーした時、HoverCircleの背景色の設定ができず、
-      背景色が元に戻ってしまうため
-       Img, HoverCircleの順にしています*/}
+      <Img src={pencil} />
     </StyledBtn>
   );
 };
@@ -23,16 +19,6 @@ const StyledBtn = styled.button`
   border-radius: 50%;
   border: none;
   background-color: transparent;
-  & > ${Img}:hover {
-    + ${HoverCircle} {
-      background-color: ${COLOR.WHITE};
-      opacity: 0.2;
-    }
-  }
-  & > ${HoverCircle}:hover {
-    background-color: ${COLOR.WHITE};
-    opacity: 0.2;
-  }
 `;
 
 const Img = styled.img`
@@ -53,6 +39,10 @@ const HoverCircle = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: transparent;
+  ${StyledBtn}:hover > & {
+    background-color: ${COLOR.WHITE};
+    opacity: 0.2;
+  }
 `;
 
 export default EditButton;
