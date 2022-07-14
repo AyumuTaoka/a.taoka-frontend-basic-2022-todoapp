@@ -8,12 +8,27 @@ import plus from "../../../assets/svg/plus.svg";
 const AddTaskButton = ({ onClick }) => {
   return (
     <StyledBtn onClick={onClick}>
-      <HoverCircle></HoverCircle>
+      <HoverCircle />
       <Img src={plus} />
       <Mess>タスクを追加</Mess>
     </StyledBtn>
   );
 };
+
+// HoverCircle→StyledBtnの順番でないと
+// 親要素から子要素のスタイルを指定できないため以下の順番になっています。
+// 参考(https://github.com/styled-components/styled-components/issues/3372#issuecomment-758119914)
+
+const HoverCircle = styled.div`
+  position: absolute;
+  width: 126px;
+  height: 24px;
+  border-radius: 12px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+`;
 
 const StyledBtn = styled.button`
   display: flex;
@@ -26,18 +41,8 @@ const StyledBtn = styled.button`
   padding: 0;
   border: none;
   background-color: transparent;
-`;
 
-const HoverCircle = styled.div`
-  position: absolute;
-  width: 126px;
-  height: 24px;
-  border-radius: 12px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: transparent;
-  ${StyledBtn}:hover > & {
+  &:hover > ${HoverCircle} {
     background-color: ${COLOR.GREEN};
     opacity: 0.2;
   }
