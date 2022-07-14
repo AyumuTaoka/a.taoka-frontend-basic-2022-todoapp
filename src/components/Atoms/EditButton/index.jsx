@@ -36,11 +36,9 @@ const StyledBtn = styled.button`
   background-color: transparent;
 
   &:hover > ${HoverCircle} {
-      background-color: ${COLOR.LIGHT_GRAY};
-      opacity: 0.2;
-    }
+    background-color: ${COLOR.LIGHT_GRAY};
+    opacity: 0.2;
   }
-
 `;
 
 const Img = styled.img`
