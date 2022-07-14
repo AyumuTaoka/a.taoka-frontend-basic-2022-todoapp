@@ -5,9 +5,9 @@ import TEXT from "../../../variables/texts";
 import FONTFAMILY from "../../../variables/font_family";
 import plus from "../../../assets/svg/plus.svg";
 
-const AddTaskButton = (props) => {
+const AddTaskButton = ({ onClick }) => {
   return (
-    <StyledBtn onClick={props.onClick}>
+    <StyledBtn onClick={onClick}>
       <HoverCircle></HoverCircle>
       <Img src={plus} />
       <Mess>タスクを追加</Mess>
