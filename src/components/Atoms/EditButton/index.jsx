@@ -6,7 +6,7 @@ import pencil from "../../../assets/svg/pencil.svg";
 const EditButton = ({ onClick }) => {
   return (
     <StyledBtn onClick={onClick}>
-      <HoverCircle></HoverCircle>
+      <HoverCircle />
       <Img src={pencil} />
     </StyledBtn>
   );
