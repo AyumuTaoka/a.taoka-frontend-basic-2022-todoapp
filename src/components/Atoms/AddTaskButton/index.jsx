@@ -21,12 +21,11 @@ const AddTaskButton = ({ onClick }) => {
 
 const HoverCircle = styled.div`
   position: absolute;
-  width: 126px;
-  height: 24px;
+  width: 100%;
+  height: 100%;
   border-radius: 12px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
   background-color: transparent;
 `;
 
@@ -38,24 +37,25 @@ const StyledBtn = styled.button`
   width: 126px;
   height: 24px;
   border-radius: 12px;
-  padding: 0;
+  padding: 0 6px;
   border: none;
   background-color: transparent;
 
-  &:hover > ${HoverCircle} {
-    background-color: ${COLOR.GREEN};
-    opacity: 0.2;
+  &:hover {
+    cursor: pointer;
+    & > ${HoverCircle} {
+      background-color: ${COLOR.GREEN};
+      opacity: 0.2;
+    }
   }
 `;
 
 const Img = styled.img`
   width: 20px;
   height: 20px;
-  margin-left: 6px;
 `;
 
 const Mess = styled.p`
-  padding: 0 6px 0 10px;
   margin: 0;
   ${TEXT.S}
   font-family: ${FONTFAMILY.NOTO_SANS};
