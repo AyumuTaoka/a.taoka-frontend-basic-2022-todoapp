@@ -43,6 +43,7 @@ const StyledBtn = styled.button`
 
   &:hover {
     cursor: pointer;
+
     & > ${HoverCircle} {
       background-color: ${COLOR.GREEN};
       opacity: 0.2;
