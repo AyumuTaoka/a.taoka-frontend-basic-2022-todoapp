@@ -1,45 +1,51 @@
-// import React, { useEffect } from "react";
-// import styled from "styled-components";
-// import COLOR from "../../../variables/color";
-// import Check from "../../../assets/svg/check.svg";
-
-// const CheckBox = ({ onClick }) => {
-//   return (
-//     <StyledCheckBox onClick={onClick}>
-//       <HoverCheck src={Check}></HoverCheck>
-//     </StyledCheckBox>
-//   );
-// };
-
-// const StyledCheckBox = styled.div`
-//   position: relative;
-//   width: 20px;
-//   height: 20px;
-//   border: 2px solid ${COLOR.LIGHT_GRAY};
-//   border-radius: 2px;
-// `;
-
-// const HoverCheck = styled.img`
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-//   width: 14px;
-//   display: none;
-//   ${StyledCheckBox}:hover > & {
-//     display: block;
-//   }
-// `;
-
-// export default CheckBox;
 import React, { useRef, useEffect } from "react";
-const Sample = () => {
+import styled from "styled-components";
+import COLOR from "../../../variables/color";
+import TEXT from "../../../variables/texts";
+import FONTFAMILY from "../../../variables/font_family";
+
+const Input = ({ onEditComplete, defaultValue }) => {
   const ref = useRef(null);
 
   useEffect(() => {
-    ref.current.style.width = "1000px";
+    let value = null;
+    if (defaultValue == null) {
+      value = "";
+    } else {
+      value = defaultValue;
+    }
+
+    ref.current.focus();
   }, []);
 
-  return <div ref={ref}>extended</div>;
+  const handleEnter = (e) => {
+    if (e.key == "Enter") {
+      e.preventDefault();
+      onEditComplete();
+    }
+  };
+
+  return (
+    <StyleldInput
+      ref={ref}
+      onBlur={onEditComplete}
+      onKeyPress={(e) => handleEnter(e)}
+    />
+  );
 };
-export default Sample;
+
+const StyleldInput = styled.input`
+  width: 232px;
+  height: 20px;
+  padding: 0 4px;
+  background-color: ${COLOR.BLACK};
+  color: ${COLOR.LIGHT_GRAY};
+  font-family: ${FONTFAMILY.NOTO_SANS};
+  ${TEXT.S}
+  font-weight: 500;
+  border: none;
+  border-radius: 2px;
+  outline: none;
+`;
+
+export default Input;

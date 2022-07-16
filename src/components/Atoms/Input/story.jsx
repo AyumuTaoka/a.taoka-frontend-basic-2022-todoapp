@@ -11,13 +11,18 @@ export default {
   },
 };
 
-const onClick = () => {
-  console.log("clicked!!!");
+const onEditComplete = () => {
+  console.log("clickeonEditCompleted!!!");
+};
+
+const defaultValue = () => {
+  return "";
 };
 
 const Template = (args) => <Input {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  onClick: onClick,
+  onEditComplete: onEditComplete,
+  defaultValue: defaultValue,
 };
