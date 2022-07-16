@@ -6,7 +6,7 @@ import Check from "../../../assets/svg/check.svg";
 const CheckBox = ({ onClick }) => {
   return (
     <StyledCheckBox onClick={onClick}>
-      <HoverCheck src={Check}></HoverCheck>
+      <img src={Check} />
     </StyledCheckBox>
   );
 };
@@ -17,17 +17,19 @@ const StyledCheckBox = styled.div`
   height: 20px;
   border: 2px solid ${COLOR.LIGHT_GRAY};
   border-radius: 2px;
-`;
-
-const HoverCheck = styled.img`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 14px;
-  display: none;
-  ${StyledCheckBox}:hover > & {
-    display: block;
+  & > img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px;
+    display: none;
+  }
+  &:hover {
+    cursor: pointer;
+    & > img {
+      display: block;
+    }
   }
 `;
 
