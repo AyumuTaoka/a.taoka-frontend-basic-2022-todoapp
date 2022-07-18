@@ -15,14 +15,10 @@ const onEditComplete = () => {
   console.log("clickeonEditCompleted!!!");
 };
 
-const defaultValue = () => {
-  return "";
-};
-
 const Template = (args) => <Input {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
   onEditComplete: onEditComplete,
-  defaultValue: defaultValue,
+  defaultValue: undefined,
 };
