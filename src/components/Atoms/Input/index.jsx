@@ -2,7 +2,6 @@ import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
 import COLOR from "../../../variables/color";
 import TEXT from "../../../variables/texts";
-import FONTFAMILY from "../../../variables/font_family";
 
 const Input = ({ onEditComplete, defaultValue = undefined }) => {
   const ref = useRef(null);
@@ -13,7 +12,7 @@ const Input = ({ onEditComplete, defaultValue = undefined }) => {
   const handleKeyPress = (e) => {
     if (e.key == "Enter") {
       e.preventDefault();
-      onEditComplete();
+      onEditComplete(e.target.value);
     }
   };
 
@@ -21,7 +20,7 @@ const Input = ({ onEditComplete, defaultValue = undefined }) => {
     <InputWrapper>
       <input
         ref={ref}
-        onBlur={onEditComplete}
+        onBlur={(e) => onEditComplete(e.target.value)}
         onKeyPress={handleKeyPress}
         defaultValue={defaultValue}
       />

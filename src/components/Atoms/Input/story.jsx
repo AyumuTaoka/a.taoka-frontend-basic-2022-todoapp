@@ -11,7 +11,8 @@ export default {
   },
 };
 
-const onEditComplete = () => {
+const onEditComplete = (value) => {
+  console.log(value);
   console.log("clickeonEditCompleted!!!");
 };
 
