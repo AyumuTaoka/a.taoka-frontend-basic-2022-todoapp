@@ -5,14 +5,57 @@ import TEXT from "../../../variables/texts";
 import Check from "../../../assets/svg/check.svg";
 import pencil from "../../../assets/svg/pencil.svg";
 
-const CheckBox = ({ onClick }) => {
+const Task = ({
+  checkOnClick,
+  onEditComplete,
+  defaultValue = undefined,
+  editOnClick,
+}) => {
+  const ref = useRef(null);
+  useEffect(() => {
+    ref.current.focus();
+  }, []);
+
+  const handleKeyPress = (e) => {
+    if (e.key == "Enter") {
+      e.preventDefault();
+
+      onEditComplete(e.target.value);
+    }
+  };
   return (
-    <StyledCheckBox onClick={onClick}>
-      <img src={Check} />
-    </StyledCheckBox>
+    <StyledTask>
+      <StyledCheckBox onClick={checkOnClick}>
+        <img src={Check} />
+      </StyledCheckBox>
+      <InputWrapper>
+        <input
+          ref={ref}
+          onBlur={(e) => onEditComplete(e.target.value)}
+          onKeyPress={handleKeyPress}
+          defaultValue={defaultValue}
+        />
+      </InputWrapper>
+      <p>taskname</p>
+      <StyledBtn onClick={editOnClick}>
+        <HoverCircle />
+        <Img src={pencil} />
+      </StyledBtn>
+    </StyledTask>
   );
 };
 
+const StyledTask = styled.div`
+  display: flex;
+  gap: 10px;
+  padding: 2px 6px;
+  & > p {
+    color: ${COLOR.LIGHT_GRAY};
+    ${TEXT.S}
+    font-weight: 500;
+    margin: 0;
+  }
+`;
 const StyledCheckBox = styled.div`
   position: relative;
   width: 20px;
@@ -35,31 +78,6 @@ const StyledCheckBox = styled.div`
   }
 `;
 
-const Input = ({ onEditComplete, defaultValue = undefined }) => {
-  const ref = useRef(null);
-  useEffect(() => {
-    ref.current.focus();
-  }, []);
-
-  const handleKeyPress = (e) => {
-    if (e.key == "Enter") {
-      e.preventDefault();
-      onEditComplete(e.target.value);
-    }
-  };
-
-  return (
-    <InputWrapper>
-      <input
-        ref={ref}
-        onBlur={(e) => onEditComplete(e.target.value)}
-        onKeyPress={handleKeyPress}
-        defaultValue={defaultValue}
-      />
-    </InputWrapper>
-  );
-};
-
 const InputWrapper = styled.div`
   width: 232px;
   height: 20px;
@@ -76,20 +94,6 @@ const InputWrapper = styled.div`
     outline: none;
   }
 `;
-
-const EditButton = ({ editOnClick }) => {
-  return (
-    <StyledBtn onClick={editOnClick}>
-      <HoverCircle />
-      <Img src={pencil} />
-    </StyledBtn>
-  );
-};
-
-// HoverCircle→StyledBtnの順番でないと
-// 親要素から子要素のスタイルを指定できないため以下の順番になっています。
-// 参考(https://github.com/styled-components/styled-components/issues/3372#issuecomment-758119914)
-
 const HoverCircle = styled.div`
   position: absolute;
   width: 20px;
@@ -122,29 +126,6 @@ const Img = styled.img`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-`;
-
-const Task = () => {
-  return (
-    <StyledTask>
-      <CheckBox />
-      <Input />
-      <p>taskname</p>
-      <EditButton />
-    </StyledTask>
-  );
-};
-
-const StyledTask = styled.div`
-  display: flex;
-  gap: 10px;
-  padding: 2px 6px;
-  & > p {
-    color: ${COLOR.LIGHT_GRAY};
-    ${TEXT.S}
-    font-weight: 500;
-    margin: 0;
-  }
 `;
 
 export default Task;
