@@ -21,24 +21,33 @@ const Task = ({ checkOnClick, onEditComplete, defaultValue = undefined }) => {
     return (
       <StyledTask>
         <CheckBox onClick={checkOnClick} />
-        <p>{defaultValue}</p>
+        <TaskTextWrapper>
+          <p>{defaultValue}</p>
+        </TaskTextWrapper>
         <EditButton onClick={() => setIsOnEdit(true)} />
       </StyledTask>
     );
   }
 };
 
+const TaskTextWrapper = styled.div`
+  width: 184px;
+`;
+
 const StyledTask = styled.div`
+  width: 256px;
+  height: 24px;
   display: flex;
   gap: 10px;
   padding: 2px 6px;
-  & > p {
-    color: ${COLOR.LIGHT_GRAY};
-    ${TEXT.S}
-    font-weight: 500;
-    margin: 0;
-    ${({ isOnEdit }) => (isOnEdit ? `display:none` : `display:block`)};
+  & > ${TaskTextWrapper} {
+    & > p {
+      color: ${COLOR.LIGHT_GRAY};
+      ${TEXT.S}
+      font-weight: 500;
+      margin: 0;
+      ${({ isOnEdit }) => (isOnEdit ? `display:none` : `display:block`)};
+    }
   }
 `;
-
 export default Task;
