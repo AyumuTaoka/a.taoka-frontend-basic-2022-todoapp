@@ -7,17 +7,25 @@ import CheckBox from "../../Atoms/CheckBox";
 import Input from "../../Atoms/Input";
 import EditButton from "../../Atoms/EditButton";
 
-//
-//
-const Task = () => {
-  return (
-    <StyledTask>
-      <CheckBox />
-      <Input />
-      <p>taskname</p>
-      <EditButton />
-    </StyledTask>
-  );
+const Task = ({ checkOnClick, onEditComplete, defaultValue = undefined }) => {
+  const [isOnEdit, setIsOnEdit] = useState(false);
+
+  if (isOnEdit) {
+    return (
+      <StyledTask>
+        <CheckBox onClick={checkOnClick} />
+        <Input onEditComplete={onEditComplete} defaultValue={defaultValue} />
+      </StyledTask>
+    );
+  } else {
+    return (
+      <StyledTask>
+        <CheckBox onClick={checkOnClick} />
+        <p>{defaultValue}</p>
+        <EditButton onClick={() => setIsOnEdit(true)} />
+      </StyledTask>
+    );
+  }
 };
 
 const StyledTask = styled.div`
@@ -29,6 +37,7 @@ const StyledTask = styled.div`
     ${TEXT.S}
     font-weight: 500;
     margin: 0;
+    ${({ isOnEdit }) => (isOnEdit ? `display:none` : `display:block`)};
   }
 `;
 

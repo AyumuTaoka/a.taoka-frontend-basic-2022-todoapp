@@ -11,24 +11,19 @@ export default {
   },
 };
 
-const editOnClick = (onEdit) => {
-  if (onEdit) {
-    onEdit = false;
-  } else {
-    onEdit = true;
-  }
+const checkOnClick = () => {
+  console.log("task completed");
 };
 
 const onEditComplete = (value) => {
-  console.log(value);
-  console.log("clickeonEditCompleted!!!");
+  console.log("taskname changed: " + value);
 };
 
 const Template = (args) => <Task_Import {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  editOnClick: editOnClick,
+  checkOnClick: checkOnClick,
   onEditComplete: onEditComplete,
-  defaultValue: undefined,
+  defaultValue: "taskname",
 };
