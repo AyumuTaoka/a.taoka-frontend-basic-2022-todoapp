@@ -32,6 +32,7 @@ const InputWrapper = styled.div`
   width: 232px;
   height: 20px;
   & > input {
+    display: block;
     width: 100%;
     height: 100%;
     padding: 0 4px;
